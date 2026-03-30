@@ -77,7 +77,8 @@ const RankingPage = ({ type }) => {
       const processed = participants
         .map(p => ({ ...p, total: Number(p.sub_praca) + Number(p.dedicado) }))
         .sort((a, b) => b.total - a.total)
-        .map((p, index) => ({ ...p, originalRank: index + 1 }));
+        .map((p, index) => ({ ...p, originalRank: index + 1 }))
+        .slice(0, 10); // Limitar aos 10 primeiros
       
       setData(processed);
     }
