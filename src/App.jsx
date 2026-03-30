@@ -82,9 +82,12 @@ const RankingPage = ({ type }) => {
   }
 
 
-  const filteredData = data.filter(item => 
-    item.nome.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredData = React.useMemo(() => {
+    return data.filter(item => 
+      item.nome.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [data, search]);
+
 
   return (
     <motion.div 
@@ -258,14 +261,15 @@ export default function App() {
 
       <nav className="glass bottom-nav">
         <NavLink to="/dedicado" className={({ isActive }) => `nav-item ${isActive || location.pathname === '/' ? 'active' : ''}`}>
-          <div className="nav-icon"><Trophy size={22} /></div>
+          <div className="nav-icon"><Trophy size={18} /></div>
           <span>Dedicado</span>
         </NavLink>
         <NavLink to="/sub-praça" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
-          <div className="nav-icon"><Users size={22} /></div>
+          <div className="nav-icon"><Users size={18} /></div>
           <span>Sub Praça</span>
         </NavLink>
       </nav>
+
     </div>
   );
 }
