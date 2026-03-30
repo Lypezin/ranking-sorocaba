@@ -43,11 +43,12 @@ const RankingItem = ({ item, index }) => {
           {item.dedicado > 0 && <span>Ded: <b>{item.dedicado}</b></span>}
         </div>
       </div>
-      <div className="score-box">
-        <div className="score-total">{total}</div>
-        <div className="player-meta">pts</div>
+      <div className="score-container">
+        <span className="score-total">{total}</span>
+        <span className="score-label">pts</span>
       </div>
     </motion.div>
+
   );
 };
 
