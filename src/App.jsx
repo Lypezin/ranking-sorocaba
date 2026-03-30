@@ -33,8 +33,9 @@ const RankingItem = ({ item, index }) => {
       transition={{ duration: 0.3, delay: Math.min(index * 0.03, 0.3) }}
     >
       <div className={`rank-number ${rank <= 3 ? `rank-${rank}` : ''}`}>
-        {rank <= 3 ? <Trophy size={18} /> : rank}
+        {rank <= 3 ? <Trophy size={20} /> : rank}
       </div>
+
       <div className="player-info">
         <div className="player-name">{item.nome}</div>
         <div className="player-meta">

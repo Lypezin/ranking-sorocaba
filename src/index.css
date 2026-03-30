@@ -72,13 +72,15 @@ h1 {
 }
 
 h2 {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--primary);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  opacity: 0.8;
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+  margin-top: 0.25rem;
 }
+
 
 header {
   padding: 3.5rem 0 2.5rem 0;
@@ -133,11 +135,18 @@ header {
 
 .rank-number {
   font-size: 0.9rem;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0.6rem;
-  margin-right: 1rem;
+  font-weight: 700;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 0.75rem;
+  margin-right: 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
+
 
 .player-name {
   font-size: 1rem;
