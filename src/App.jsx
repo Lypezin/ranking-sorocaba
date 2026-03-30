@@ -46,8 +46,9 @@ const RankingItem = ({ item, index }) => {
       </div>
       <div className="score-container">
         <span className="score-total">{total}</span>
-        <span className="score-label">pts</span>
+        <span className="score-label">Corridas Completadas</span>
       </div>
+
     </motion.div>
 
   );
