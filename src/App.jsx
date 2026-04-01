@@ -76,7 +76,10 @@ const RankingPage = ({ type }) => {
     } else {
       const processed = participants
         .map(p => ({ ...p, total: type === 'SUB PRAÇA' ? Number(p.sub_praca) : Number(p.dedicado) }))
-        .sort((a, b) => b.total - a.total)
+        .sort((a, b) => {
+          if (b.total !== a.total) return b.total - a.total;
+          return String(b.uuid_excel || '').localeCompare(String(a.uuid_excel || ''));
+        })
         .map((p, index) => ({ ...p, originalRank: index + 1 }))
         .slice(0, 10); // Limitar aos 10 primeiros
       
