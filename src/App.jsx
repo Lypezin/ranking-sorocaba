@@ -75,7 +75,7 @@ const RankingPage = ({ type }) => {
       console.error('Error fetching:', error);
     } else {
       const processed = participants
-        .map(p => ({ ...p, total: Number(p.sub_praca) + Number(p.dedicado) }))
+        .map(p => ({ ...p, total: type === 'SUB PRAÇA' ? Number(p.sub_praca) : Number(p.dedicado) }))
         .sort((a, b) => b.total - a.total)
         .map((p, index) => ({ ...p, originalRank: index + 1 }))
         .slice(0, 10); // Limitar aos 10 primeiros
