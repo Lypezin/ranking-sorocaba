@@ -75,9 +75,13 @@ const RankingPage = ({ type }) => {
       console.error('Error fetching:', error);
     } else {
       const processed = participants
-        .map(p => ({ ...p, total: type === 'SUB PRAÇA' ? Number(p.sub_praca) : Number(p.dedicado) }))
+        .map(p => ({ 
+          ...p, 
+          categoryScore: type === 'SUB PRAÇA' ? Number(p.sub_praca) : Number(p.dedicado),
+          total: Number(p.sub_praca) + Number(p.dedicado)
+        }))
         .sort((a, b) => {
-          if (b.total !== a.total) return b.total - a.total;
+          if (b.categoryScore !== a.categoryScore) return b.categoryScore - a.categoryScore;
           return String(b.uuid_excel || '').localeCompare(String(a.uuid_excel || ''));
         })
         .map((p, index) => ({ ...p, originalRank: index + 1 }))
