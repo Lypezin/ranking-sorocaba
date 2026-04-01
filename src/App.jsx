@@ -68,20 +68,24 @@ const RankingPage = ({ type }) => {
     setLoading(true);
     const { data: participants, error } = await supabase
       .from('participantes')
-      .select('*')
-      .eq('sub', type);
+      .select('*');
 
     if (error) {
       console.error('Error fetching:', error);
     } else {
       const processed = participants
+        .filter(p => {
+          const sub = Number(p.sub_praca || 0);
+          const ded = Number(p.dedicado || 0);
+          if (type === 'SUB PRAÇA') return sub >= ded;
+          return ded > sub;
+        })
         .map(p => ({ 
           ...p, 
-          categoryScore: type === 'SUB PRAÇA' ? Number(p.sub_praca) : Number(p.dedicado),
-          total: Number(p.sub_praca) + Number(p.dedicado)
+          total: Number(p.sub_praca || 0) + Number(p.dedicado || 0)
         }))
         .sort((a, b) => {
-          if (b.categoryScore !== a.categoryScore) return b.categoryScore - a.categoryScore;
+          if (b.total !== a.total) return b.total - a.total;
           return String(b.uuid_excel || '').localeCompare(String(a.uuid_excel || ''));
         })
         .map((p, index) => ({ ...p, originalRank: index + 1 }))
